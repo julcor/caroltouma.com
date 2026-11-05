@@ -26,8 +26,8 @@
   --green: #0b5a22;
   --measure: 760px;
   --font: "Routed Gothic", sans-serif;
-  /* 21.6px on phones (1.2× the previous 18px) → 24px on desktop */
-  --text: clamp(1.35rem, 0.95rem + 0.75vw, 1.5rem);
+  /* 19.8px on phones (1.1× the previous 18px) → 24px on desktop */
+  --text: clamp(1.2375rem, 0.95rem + 0.75vw, 1.5rem);
   /* Leading: the single source for line height and all vertical spacing.
      --line is one line of body text, as a length. It is built from --text
      (not em) so it means the same distance everywhere, even inside smaller
