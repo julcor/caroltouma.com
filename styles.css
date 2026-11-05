@@ -294,9 +294,16 @@ main li::marker { content: "•  "; font-size: 0.7em; }
   font-size: inherit;
   font-weight: 400;
   font-style: italic;
-  text-align: center;
 }
 .fee p { margin: 0; }
+
+/* Fee blocks and sliding-scale rates line up with the bulleted list text */
+.fees,
+.rates { margin-left: 1.2em; }
+@media (min-width: 720px) {
+  .fees,
+  .rates { margin-left: var(--inset); }
+}
 
 /* Footer ------------------------------------------------------------- */
 .footer {
