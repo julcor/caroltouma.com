@@ -202,10 +202,13 @@ a:focus-visible {
 .name em { font-style: italic; }
 
 /* Photo ------------------------------------------------------------- */
+/* Two lines above and below every photo. At the start or end of a
+   section the section's own two-line padding provides that space instead. */
 .photo {
-  /* Same as the space above the photo (the section's top padding) */
-  margin: 0 0 calc(var(--line) * 2);
+  margin: calc(var(--line) * 2) 0;
 }
+.photo:first-child { margin-top: 0; }
+.photo:last-child { margin-bottom: 0; }
 .photo img {
   display: block;
   width: 100%;
