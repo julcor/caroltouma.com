@@ -124,7 +124,7 @@
   /* Darkened from the original green so text stays readable (WCAG AA) on every band */
   --green: #0b5a22;
   /* One line of leading, used for vertical rhythm */
-  --line: 1.36em;
+  --line: 1.45em;
   --measure: 760px;
   --font: "Routed Gothic", sans-serif;
   /* --font: "ABC Otto", Georgia, serif; */
@@ -149,7 +149,7 @@ body {
   color: var(--green);
   font-family: var(--font);
   font-size: var(--text);
-  line-height: 1.36;
+  line-height: 1.45;
   letter-spacing: 0;
   word-spacing: 0.08em;
   -webkit-font-smoothing: antialiased;
@@ -264,7 +264,7 @@ main li::marker { content: "•  "; font-size: 0.7em; }
 
 .fees {
   display: grid;
-  gap: 1.36em;
+  gap: var(--line);
 }
 .fee h4 {
   margin: 0 0 var(--line);
