@@ -170,8 +170,11 @@ a {
   text-decoration: underline dotted;
   text-decoration-thickness: .1em;
   text-underline-offset: 0.2em;
+  text-decoration-color: currentColor;
+  transition: text-decoration-color 0.4s ease;
 }
-a:hover { text-decoration-thickness: 2px; }
+/* Underline fades out on hover */
+a:hover { text-decoration-color: transparent; }
 a:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
