@@ -123,14 +123,18 @@
   --bg-5: #cabebc; /* dusty rose   – footer */
   /* Darkened from the original green so text stays readable (WCAG AA) on every band */
   --green: #0b5a22;
-  /* One line of leading, used for vertical rhythm */
-  --line: 1.45em;
   --measure: 760px;
   --font: "Routed Gothic", sans-serif;
   /* --font: "ABC Otto", Georgia, serif; */
   /* --font: "Goudy Oldstyle", "Goudy Old Style", Garamond, Georgia, serif; */
   /* 18px on small phones → 24px on desktop */
   --text: clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
+  /* Leading: the single source for line height and all vertical spacing.
+     --line is one line of body text, as a length. It is built from --text
+     (not em) so it means the same distance everywhere, even inside smaller
+     text like the photo caption. */
+  --leading: 1.45;
+  --line: calc(var(--leading) * var(--text));
   --gutter: clamp(1.25rem, 5vw, 2rem);
 }
 
@@ -149,7 +153,7 @@ body {
   color: var(--green);
   font-family: var(--font);
   font-size: var(--text);
-  line-height: 1.45;
+  line-height: var(--leading);
   letter-spacing: 0;
   word-spacing: 0.08em;
   -webkit-font-smoothing: antialiased;
@@ -177,8 +181,7 @@ a:focus-visible {
 /* Bands ------------------------------------------------------------- */
 /* Full-width color bands; content stays in a centred column via padding. */
 .band {
-  --space: clamp(3.5rem, 8vw, 5rem);
-  padding: var(--space) max(var(--gutter), calc((100% - var(--measure)) / 2));
+  padding: calc(var(--line) * 2) max(var(--gutter), calc((100% - var(--measure)) / 2));
 }
 .band-1 { background: var(--bg-1); }
 .band-2 { background: var(--bg-2); }
@@ -187,8 +190,7 @@ a:focus-visible {
 .band-5 { background: var(--bg-5); }
 
 /* Header and welcome share one color, so they read as a single section */
-.masthead { padding-top: clamp(3rem, 8vw, 5.25rem); padding-bottom: 0; }
-.intro { padding-top: clamp(3rem, 9vw, 5.25rem); }
+.masthead { padding-bottom: 0; }
 
 /* Header ------------------------------------------------------------ */
 .name {
@@ -201,7 +203,7 @@ a:focus-visible {
 
 /* Photo ------------------------------------------------------------- */
 .photo {
-  margin: 0 0 clamp(4rem, 10vw, 6.5rem);
+  margin: 0 0 calc(var(--line) * 3);
 }
 .photo img {
   display: block;
@@ -209,7 +211,7 @@ a:focus-visible {
   height: auto;
 }
 figcaption {
-  margin-top: 0.85em;
+  margin-top: calc(var(--line) * 0.5);
   font-size: 0.62em;
   line-height: 1.4;
 }
@@ -277,16 +279,15 @@ main li::marker { content: "•  "; font-size: 0.7em; }
 
 /* Footer ------------------------------------------------------------- */
 .footer {
-  padding-bottom: clamp(3rem, 6vw, 4.5rem);
   display: grid;
-  gap: 1.5rem;
+  gap: var(--line);
 }
-.footer .name { margin-bottom: 0.35em; }
+.footer .name { margin-bottom: calc(var(--line) * 0.25); }
 .footer-contact {
   font-style: normal;
   display: flex;
   flex-direction: column;
-  gap: 0.2em;
+  gap: calc(var(--line) * 0.15);
 }
 .footer-contact a { text-decoration: none; }
 .footer-contact a:hover { text-decoration: underline; }
@@ -295,6 +296,5 @@ main li::marker { content: "•  "; font-size: 0.7em; }
   .footer {
     grid-template-columns: 1fr 1fr;
     align-items: end;
-    gap: 2rem;
   }
 }
