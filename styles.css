@@ -119,7 +119,46 @@ figcaption {
 }
 
 /* Body copy ---------------------------------------------------------- */
-.intro p + p { margin-top: 1.36em; }
+.prose p,
+.prose ul { margin: 0; }
+.prose > section + section { margin-top: 4.5em; }
+.prose * + p,
+.prose * + ul,
+.prose * + .fees { margin-top: 1.36em; }
+
+/* Section headings echo the name in the masthead */
+.prose h2 {
+  margin: 0 0 1.2em;
+  font-size: inherit;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.prose h3 {
+  margin: 2.4em 0 0;
+  font-size: inherit;
+  font-weight: 700;
+}
+.prose h2 + h3 { margin-top: 0; }
+.prose h3 + p { margin-top: 0.35em; }
+
+.prose ul {
+  padding-left: 1.1em;
+}
+.prose li { padding-left: 0.3em; }
+.prose li + li { margin-top: 0.35em; }
+.prose li::marker { content: "–  "; }
+
+.fees {
+  display: grid;
+  gap: 1.36em;
+}
+.fee h4 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 700;
+}
+.fee p { margin: 0; }
 
 /* Footer ------------------------------------------------------------- */
 .footer {
