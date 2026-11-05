@@ -1,0 +1,146 @@
+@font-face {
+  font-family: "Goudy Oldstyle";
+  src: url("fonts/goudy-oldstyle-regular.woff2") format("woff2"),
+       url("fonts/goudy-oldstyle-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Goudy Oldstyle";
+  src: url("fonts/goudy-oldstyle-italic.woff2") format("woff2"),
+       url("fonts/goudy-oldstyle-italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Goudy Oldstyle";
+  src: url("fonts/goudy-oldstyle-bold.woff2") format("woff2"),
+       url("fonts/goudy-oldstyle-bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Goudy Oldstyle";
+  src: url("fonts/goudy-oldstyle-bold-italic.woff2") format("woff2"),
+       url("fonts/goudy-oldstyle-bold-italic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --cream: #fcf5e8;
+  --green: #11652a;
+  --measure: 760px;
+  /* 18px on small phones → 24px on desktop */
+  --text: clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
+  --gutter: clamp(1.25rem, 5vw, 2rem);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--green);
+  font-family: "Goudy Oldstyle", "Goudy Old Style", Garamond, Georgia, serif;
+  font-size: var(--text);
+  line-height: 1.36;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+}
+
+p,
+h1,
+figure,
+address { margin: 0; }
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.page {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5.25rem) var(--gutter) clamp(3rem, 6vw, 4.5rem);
+}
+
+/* Header ------------------------------------------------------------ */
+.name {
+  font-size: inherit;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.name em { font-style: italic; }
+
+/* Photo ------------------------------------------------------------- */
+.photo {
+  margin: clamp(3rem, 9vw, 5.25rem) 0 clamp(4rem, 10vw, 6.5rem);
+  padding-left: 0;
+}
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+figcaption {
+  margin-top: 0.85em;
+  font-size: 0.62em;
+  line-height: 1.4;
+}
+
+@media (min-width: 720px) {
+  /* Image sits slightly indented from the text column, as in the design */
+  .photo {
+    padding-left: 8.5%;
+    max-width: 95%;
+  }
+}
+
+/* Body copy ---------------------------------------------------------- */
+.intro p + p { margin-top: 1.36em; }
+
+/* Footer ------------------------------------------------------------- */
+.footer {
+  margin-top: clamp(4.5rem, 12vw, 8.5rem);
+  display: grid;
+  gap: 1.5rem;
+}
+.footer .name { margin-bottom: 0.35em; }
+.footer-contact {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+.footer-contact a { text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+
+@media (min-width: 720px) {
+  .footer {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 2rem;
+  }
+}
