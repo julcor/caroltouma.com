@@ -170,11 +170,16 @@ a {
   text-decoration: underline dotted;
   text-decoration-thickness: .1em;
   text-underline-offset: 0.2em;
-  text-decoration-color: currentColor;
-  transition: text-decoration-color 0.4s ease;
 }
-/* Underline fades out on hover */
-a:hover { text-decoration-color: transparent; }
+/* In-line links: underline fades out and text fades to red on hover */
+main a {
+  text-decoration-color: currentColor;
+  transition: color 0.4s ease, text-decoration-color 0.4s ease;
+}
+main a:hover {
+  color: #731600;
+  text-decoration-color: transparent;
+}
 a:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
@@ -316,7 +321,6 @@ main li::marker { content: "•  "; font-size: 0.7em; }
   flex-direction: column;
 }
 .footer-contact a { text-decoration: none; }
-.footer-contact a:hover { text-decoration: underline; }
 
 @media (min-width: 720px) {
   .footer {
