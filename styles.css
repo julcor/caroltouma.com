@@ -1,4 +1,70 @@
 @font-face {
+  font-family: "ABC Otto";
+  src: url("fonts/ABCOtto-Light.woff2") format("woff2"),
+       url("fonts/ABCOtto-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Otto";
+  src: url("fonts/ABCOtto-LightItalic.woff2") format("woff2"),
+       url("fonts/ABCOtto-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Otto";
+  src: url("fonts/ABCOtto-Regular.woff2") format("woff2"),
+       url("fonts/ABCOtto-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Otto";
+  src: url("fonts/ABCOtto-RegularItalic.woff2") format("woff2"),
+       url("fonts/ABCOtto-RegularItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Otto";
+  src: url("fonts/ABCOtto-Medium.woff2") format("woff2"),
+       url("fonts/ABCOtto-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Otto";
+  src: url("fonts/ABCOtto-MediumItalic.woff2") format("woff2"),
+       url("fonts/ABCOtto-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Otto";
+  src: url("fonts/ABCOtto-Bold.woff2") format("woff2"),
+       url("fonts/ABCOtto-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Otto";
+  src: url("fonts/ABCOtto-BoldItalic.woff2") format("woff2"),
+       url("fonts/ABCOtto-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Previous typeface, kept so it is easy to switch back (set --font below) */
+@font-face {
   font-family: "Goudy Oldstyle";
   src: url("fonts/goudy-oldstyle-regular.woff2") format("woff2"),
        url("fonts/goudy-oldstyle-regular.otf") format("opentype");
@@ -43,8 +109,11 @@
   /* One line of leading, used for vertical rhythm */
   --line: 1.36em;
   --measure: 760px;
-  /* 18px on small phones → 24px on desktop */
-  --text: clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
+  --font: "ABC Otto", Georgia, serif;
+  /* --font: "Goudy Oldstyle", "Goudy Old Style", Garamond, Georgia, serif; */
+  /* Otto has a taller x-height than Goudy, so it is set a little smaller:
+     about 16px on small phones → 21px on desktop */
+  --text: clamp(1rem, 0.85rem + 0.65vw, 1.3rem);
   --gutter: clamp(1.25rem, 5vw, 2rem);
 }
 
@@ -61,7 +130,7 @@ body {
   margin: 0;
   background: var(--bg-1);
   color: var(--green);
-  font-family: "Goudy Oldstyle", "Goudy Old Style", Garamond, Georgia, serif;
+  font-family: var(--font);
   font-size: var(--text);
   line-height: 1.36;
   letter-spacing: 0.01em;
@@ -177,12 +246,15 @@ main li::marker { content: "•  "; font-size: 0.7em; }
 
 .fees {
   display: grid;
-  gap: 1.36em;
+  gap: calc(var(--line) * 1.5);
+  text-align: center;
 }
 .fee h4 {
-  margin: 0;
+  margin: 0 0 var(--line);
   font-size: inherit;
-  font-weight: 700;
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
 }
 .fee p { margin: 0; }
 
