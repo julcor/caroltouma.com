@@ -203,7 +203,8 @@ a:focus-visible {
 
 /* Photo ------------------------------------------------------------- */
 .photo {
-  margin: 0 0 calc(var(--line) * 3);
+  /* Same as the space above the photo (the section's top padding) */
+  margin: 0 0 calc(var(--line) * 2);
 }
 .photo img {
   display: block;
@@ -282,12 +283,10 @@ main li::marker { content: "•  "; font-size: 0.7em; }
   display: grid;
   gap: var(--line);
 }
-.footer .name {}
 .footer-contact {
   font-style: normal;
   display: flex;
   flex-direction: column;
-  gap: calc(var(--line) * 0.15);
 }
 .footer-contact a { text-decoration: none; }
 .footer-contact a:hover { text-decoration: underline; }
