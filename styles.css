@@ -211,6 +211,7 @@ a:focus-visible {
 .photo:last-child { margin-bottom: 0; }
 .photo img {
   display: block;
+  mix-blend-mode: multiply;
   width: 100%;
   height: auto;
 }
@@ -225,6 +226,11 @@ figcaption {
   .photo {
     padding-left: 8.5%;
     max-width: 95%;
+  }
+  /* One size smaller: double the left and right insets */
+  .photo-small {
+    padding-left: 17%;
+    max-width: 90%;
   }
 }
 
