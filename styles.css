@@ -297,11 +297,12 @@ main li::marker { content: "•  "; font-size: 0.7em; }
 }
 .fee p { margin: 0; }
 
-/* Fee blocks and sliding-scale rates line up with the bulleted list text */
-.fees,
+/* Fee rates and sliding-scale rates line up with the bulleted list text;
+   the fee labels stay on the paragraph edge */
+.fee p,
 .rates { margin-left: 1.2em; }
 @media (min-width: 720px) {
-  .fees,
+  .fee p,
   .rates { margin-left: var(--inset); }
 }
 
