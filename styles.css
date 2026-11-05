@@ -282,7 +282,7 @@ main li::marker { content: "•  "; font-size: 0.7em; }
   display: grid;
   gap: var(--line);
 }
-.footer .name { margin-bottom: calc(var(--line) * 0.25); }
+.footer .name {}
 .footer-contact {
   font-style: normal;
   display: flex;
