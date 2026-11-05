@@ -32,8 +32,16 @@
 }
 
 :root {
-  --cream: #fcf5e8;
-  --green: #11652a;
+  /* Section colors, top to bottom */
+  --bg-1: #cbcbbc; /* warm stone   – header + welcome */
+  --bg-2: #bdcac0; /* sage         – about */
+  --bg-3: #bdcac9; /* sea glass    – services */
+  --bg-4: #bcc5ca; /* blue-grey    – pricing */
+  --bg-5: #cabebc; /* dusty rose   – footer */
+  /* Darkened from the original green so text stays readable (WCAG AA) on every band */
+  --green: #0b5a22;
+  /* How far into each section the blend from the previous color runs */
+  --blend: clamp(10rem, 22vw, 16rem);
   --measure: 760px;
   /* 18px on small phones → 24px on desktop */
   --text: clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
@@ -51,7 +59,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--cream);
+  background: var(--bg-1);
   color: var(--green);
   font-family: "Goudy Oldstyle", "Goudy Old Style", Garamond, Georgia, serif;
   font-size: var(--text);
@@ -79,11 +87,22 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-.page {
-  max-width: calc(var(--measure) + 2 * var(--gutter));
-  margin: 0 auto;
-  padding: clamp(3rem, 8vw, 5.25rem) var(--gutter) clamp(3rem, 6vw, 4.5rem);
+/* Bands ------------------------------------------------------------- */
+/* Full-width color bands; content stays in a centred column via padding. */
+.band {
+  --space: clamp(3.5rem, 8vw, 5rem);
+  padding: var(--space) max(var(--gutter), calc((100% - var(--measure)) / 2));
+  background: linear-gradient(to bottom, var(--from), var(--to) var(--blend), var(--to));
 }
+.band-1 { --from: var(--bg-1); --to: var(--bg-1); }
+.band-2 { --from: var(--bg-1); --to: var(--bg-2); }
+.band-3 { --from: var(--bg-2); --to: var(--bg-3); }
+.band-4 { --from: var(--bg-3); --to: var(--bg-4); }
+.band-5 { --from: var(--bg-4); --to: var(--bg-5); }
+
+/* Header and welcome share one color, so they read as a single section */
+.masthead { padding-top: clamp(3rem, 8vw, 5.25rem); padding-bottom: 0; }
+.intro { padding-top: clamp(3rem, 9vw, 5.25rem); }
 
 /* Header ------------------------------------------------------------ */
 .name {
@@ -96,8 +115,7 @@ a:focus-visible {
 
 /* Photo ------------------------------------------------------------- */
 .photo {
-  margin: clamp(3rem, 9vw, 5.25rem) 0 clamp(4rem, 10vw, 6.5rem);
-  padding-left: 0;
+  margin: 0 0 clamp(4rem, 10vw, 6.5rem);
 }
 .photo img {
   display: block;
@@ -119,35 +137,34 @@ figcaption {
 }
 
 /* Body copy ---------------------------------------------------------- */
-.prose p,
-.prose ul { margin: 0; }
-.prose > section + section { margin-top: 4.5em; }
-.prose * + p,
-.prose * + ul,
-.prose * + .fees { margin-top: 1.36em; }
+main p,
+main ul { margin: 0; }
+main * + p,
+main * + ul,
+main * + .fees { margin-top: 1.36em; }
 
 /* Section headings echo the name in the masthead */
-.prose h2 {
+main h2 {
   margin: 0 0 1.2em;
   font-size: inherit;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-.prose h3 {
+main h3 {
   margin: 2.4em 0 0;
   font-size: inherit;
   font-weight: 700;
 }
-.prose h2 + h3 { margin-top: 0; }
-.prose h3 + p { margin-top: 0.35em; }
+main h2 + h3 { margin-top: 0; }
+main h3 + p { margin-top: 0.35em; }
 
-.prose ul {
+main ul {
   padding-left: 1.1em;
 }
-.prose li { padding-left: 0.3em; }
-.prose li + li { margin-top: 0.35em; }
-.prose li::marker { content: "–  "; }
+main li { padding-left: 0.3em; }
+main li + li { margin-top: 0.35em; }
+main li::marker { content: "–  "; }
 
 .fees {
   display: grid;
@@ -162,7 +179,7 @@ figcaption {
 
 /* Footer ------------------------------------------------------------- */
 .footer {
-  margin-top: clamp(4.5rem, 12vw, 8.5rem);
+  padding-bottom: clamp(3rem, 6vw, 4.5rem);
   display: grid;
   gap: 1.5rem;
 }
