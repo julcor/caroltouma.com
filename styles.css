@@ -222,16 +222,12 @@ figcaption {
 }
 
 @media (min-width: 720px) {
-  /* Image is inset equally on both sides of the text column */
-  :root { --inset: 6.75%; }
+  /* Images, list text and fee rates are inset by the same space that
+     sits between text and an image above or below it (two lines) */
+  :root { --inset: calc(var(--line) * 2); }
   .photo {
     padding-left: var(--inset);
     padding-right: var(--inset);
-  }
-  /* One size smaller: double the insets */
-  .photo-small {
-    padding-left: calc(var(--inset) * 2);
-    padding-right: calc(var(--inset) * 2);
   }
 }
 
