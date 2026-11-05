@@ -211,10 +211,10 @@ a:focus-visible {
 .photo:last-child { margin-bottom: 0; }
 .photo img {
   display: block;
-  mix-blend-mode: multiply;
   width: 100%;
   height: auto;
 }
+.photo-multiply img { mix-blend-mode: multiply; }
 figcaption {
   margin-top: calc(var(--line) * 0.5);
   font-size: 0.62em;
@@ -222,15 +222,16 @@ figcaption {
 }
 
 @media (min-width: 720px) {
-  /* Image sits slightly indented from the text column, as in the design */
+  /* Image is inset equally on both sides of the text column */
+  :root { --inset: 6.75%; }
   .photo {
-    padding-left: 8.5%;
-    max-width: 95%;
+    padding-left: var(--inset);
+    padding-right: var(--inset);
   }
-  /* One size smaller: double the left and right insets */
+  /* One size smaller: double the insets */
   .photo-small {
-    padding-left: 17%;
-    max-width: 90%;
+    padding-left: calc(var(--inset) * 2);
+    padding-right: calc(var(--inset) * 2);
   }
 }
 
@@ -273,6 +274,16 @@ main * + ul,
 main ul + p { margin-top: calc(var(--line) * 1.5); }
 main li + li { margin-top: var(--line); }
 main li::marker { content: "•  "; font-size: 0.7em; }
+
+@media (min-width: 720px) {
+  /* Item text lines up with the branch photo's edges; bullets hang outside */
+  main ul {
+    max-width: none;
+    margin-left: var(--inset);
+    margin-right: var(--inset);
+    padding-left: 0;
+  }
+}
 
 .fees {
   display: grid;
