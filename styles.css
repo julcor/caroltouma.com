@@ -40,8 +40,8 @@
   --bg-5: #cabebc; /* dusty rose   – footer */
   /* Darkened from the original green so text stays readable (WCAG AA) on every band */
   --green: #0b5a22;
-  /* How far into each section the blend from the previous color runs */
-  --blend: clamp(10rem, 22vw, 16rem);
+  /* One line of leading, used for vertical rhythm */
+  --line: 1.36em;
   --measure: 760px;
   /* 18px on small phones → 24px on desktop */
   --text: clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
@@ -92,13 +92,12 @@ a:focus-visible {
 .band {
   --space: clamp(3.5rem, 8vw, 5rem);
   padding: var(--space) max(var(--gutter), calc((100% - var(--measure)) / 2));
-  background: linear-gradient(to bottom, var(--from), var(--to) var(--blend), var(--to));
 }
-.band-1 { --from: var(--bg-1); --to: var(--bg-1); }
-.band-2 { --from: var(--bg-1); --to: var(--bg-2); }
-.band-3 { --from: var(--bg-2); --to: var(--bg-3); }
-.band-4 { --from: var(--bg-3); --to: var(--bg-4); }
-.band-5 { --from: var(--bg-4); --to: var(--bg-5); }
+.band-1 { background: var(--bg-1); }
+.band-2 { background: var(--bg-2); }
+.band-3 { background: var(--bg-3); }
+.band-4 { background: var(--bg-4); }
+.band-5 { background: var(--bg-5); }
 
 /* Header and welcome share one color, so they read as a single section */
 .masthead { padding-top: clamp(3rem, 8vw, 5.25rem); padding-bottom: 0; }
@@ -139,32 +138,42 @@ figcaption {
 /* Body copy ---------------------------------------------------------- */
 main p,
 main ul { margin: 0; }
+/* One blank line between blocks, including between headings */
 main * + p,
 main * + ul,
-main * + .fees { margin-top: 1.36em; }
+main * + .fees,
+main * + h3 { margin-top: var(--line); }
 
-/* Section headings echo the name in the masthead */
-main h2 {
-  margin: 0 0 1.2em;
+/* A little more room before a new subsection */
+main p + h3,
+main ul + h3,
+main .fees + h3 { margin-top: calc(var(--line) * 2); }
+
+/* Headings: centred, same size as the body */
+main h2,
+main h3 {
+  margin-bottom: 0;
   font-size: inherit;
   font-weight: 400;
+  text-align: center;
+}
+main h2 {
+  margin-top: 0;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-main h3 {
-  margin: 2.4em 0 0;
-  font-size: inherit;
-  font-weight: 700;
-}
-main h2 + h3 { margin-top: 0; }
-main h3 + p { margin-top: 0.35em; }
 
+/* List: narrower, indented block with a blank line between items */
 main ul {
-  padding-left: 1.1em;
+  max-width: 22em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.2em;
 }
-main li { padding-left: 0.3em; }
-main li + li { margin-top: 0.35em; }
-main li::marker { content: "–  "; }
+main * + ul,
+main ul + p { margin-top: calc(var(--line) * 1.5); }
+main li + li { margin-top: var(--line); }
+main li::marker { content: "•  "; font-size: 0.7em; }
 
 .fees {
   display: grid;
