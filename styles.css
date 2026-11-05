@@ -1,0 +1,229 @@
+@font-face {
+  font-family: "Routed Gothic";
+  src: url("fonts/routed-gothic.woff2") format("woff2"),
+       url("fonts/routed-gothic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Routed Gothic";
+  src: url("fonts/routed-gothic-half-italic.woff2") format("woff2"),
+       url("fonts/routed-gothic-half-italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Section colors, top to bottom */
+  --bg-1: #cbcbbc; /* warm stone   – header + welcome */
+  --bg-2: #bdcac0; /* sage         – about */
+  --bg-3: #bdcac9; /* sea glass    – services */
+  --bg-4: #bcc5ca; /* blue-grey    – pricing */
+  --bg-5: #cabebc; /* dusty rose   – footer */
+  /* Darkened from the original green so text stays readable (WCAG AA) on every band */
+  --green: #0b5a22;
+  --measure: 760px;
+  --font: "Routed Gothic", sans-serif;
+  /* 18px on small phones → 24px on desktop */
+  --text: clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
+  /* Leading: the single source for line height and all vertical spacing.
+     --line is one line of body text, as a length. It is built from --text
+     (not em) so it means the same distance everywhere, even inside smaller
+     text like the photo caption. */
+  --leading: 1.45;
+  --line: calc(var(--leading) * var(--text));
+  --gutter: clamp(1.25rem, 5vw, 2rem);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-1);
+  color: var(--green);
+  font-family: var(--font);
+  font-size: var(--text);
+  line-height: var(--leading);
+  letter-spacing: 0;
+  word-spacing: 0.08em;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+}
+
+p,
+h1,
+figure,
+address { margin: 0; }
+
+a {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-decoration-thickness: .1em;
+  text-underline-offset: 0.2em;
+}
+/* In-line links: underline fades out and text fades to red on hover */
+main a {
+  text-decoration-color: currentColor;
+  transition: color 0.4s ease, text-decoration-color 0.4s ease;
+}
+main a:hover {
+  color: #663F00;
+  text-decoration-color: transparent;
+}
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Bands ------------------------------------------------------------- */
+/* Full-width color bands; content stays in a centred column via padding. */
+.band {
+  padding: calc(var(--line) * 2) max(var(--gutter), calc((100% - var(--measure)) / 2));
+}
+.band-1 { background: var(--bg-1); }
+.band-2 { background: var(--bg-2); }
+.band-3 { background: var(--bg-3); }
+.band-4 { background: var(--bg-4); }
+.band-5 { background: var(--bg-5); }
+
+/* Header and welcome share one color, so they read as a single section */
+.masthead { padding-bottom: 0; }
+
+/* Header ------------------------------------------------------------ */
+.name {
+  font-size: inherit;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.name em {}
+
+/* Photo ------------------------------------------------------------- */
+/* Two lines above and below every photo. At the start or end of a
+   section the section's own two-line padding provides that space instead. */
+.photo {
+  margin: calc(var(--line) * 2) 0;
+}
+.photo:first-child { margin-top: 0; }
+.photo:last-child { margin-bottom: 0; }
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.photo-multiply img { mix-blend-mode: multiply; }
+figcaption {
+  margin-top: calc(var(--line) * 0.5);
+  font-size: 0.62em;
+  line-height: 1.4;
+}
+
+@media (min-width: 720px) {
+  /* Images, list text and fee rates are inset by the same space that
+     sits between text and an image above or below it (two lines) */
+  :root { --inset: calc(var(--line) * 2); }
+  .photo {
+    padding-left: var(--inset);
+    padding-right: var(--inset);
+  }
+}
+
+/* Body copy ---------------------------------------------------------- */
+main p,
+main ul { margin: 0; }
+/* One blank line between blocks, including between headings */
+main * + p,
+main * + ul,
+main * + .fees,
+main * + h3 { margin-top: var(--line); }
+
+/* A little more room before a new subsection */
+main p + h3,
+main ul + h3,
+main .fees + h3 { margin-top: calc(var(--line) * 2); }
+
+/* Headings: centred, same size as the body */
+main h2,
+main h3 {
+  margin-bottom: 0;
+  font-size: inherit;
+  font-weight: 400;
+  text-align: center;
+}
+main h2 {
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* List: narrower, indented block with a blank line between items */
+main ul {
+  max-width: 22em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.2em;
+}
+main * + ul,
+main ul + p { margin-top: calc(var(--line) * 1.5); }
+main li + li { margin-top: var(--line); }
+main li::marker { content: "•  "; font-size: 0.7em; }
+
+@media (min-width: 720px) {
+  /* Item text lines up with the branch photo's edges; bullets hang outside */
+  main ul {
+    max-width: none;
+    margin-left: var(--inset);
+    margin-right: var(--inset);
+    padding-left: 0;
+  }
+}
+
+.fees {
+  display: grid;
+  gap: var(--line);
+}
+.fee h4 {
+  margin: 0 0 var(--line);
+  font-size: inherit;
+  font-weight: 400;
+  font-style: italic;
+}
+.fee p { margin: 0; }
+
+/* Fee rates and sliding-scale rates line up with the bulleted list text;
+   the fee labels stay on the paragraph edge */
+.fee p,
+.rates { margin-left: 1.2em; }
+@media (min-width: 720px) {
+  .fee p,
+  .rates { margin-left: var(--inset); }
+}
+
+/* Footer ------------------------------------------------------------- */
+.footer {
+  display: grid;
+  gap: var(--line);
+}
+.footer-contact {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+}
+.footer-contact a { text-decoration: none; }
+
+@media (min-width: 720px) {
+  .footer {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+  }
+}
