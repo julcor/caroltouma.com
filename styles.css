@@ -177,7 +177,7 @@ main a {
   transition: color 0.4s ease, text-decoration-color 0.4s ease;
 }
 main a:hover {
-  color: #731600;
+  color: #663F00;
   text-decoration-color: transparent;
 }
 a:focus-visible {
