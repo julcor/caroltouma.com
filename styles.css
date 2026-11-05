@@ -246,8 +246,7 @@ main li::marker { content: "•  "; font-size: 0.7em; }
 
 .fees {
   display: grid;
-  gap: calc(var(--line) * 1.5);
-  text-align: center;
+  gap: 1.36em;
 }
 .fee h4 {
   margin: 0 0 var(--line);
