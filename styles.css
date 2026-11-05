@@ -26,8 +26,8 @@
   --green: #0b5a22;
   --measure: 760px;
   --font: "Routed Gothic", sans-serif;
-  /* 18px on small phones → 24px on desktop */
-  --text: clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
+  /* 21.6px on phones (1.2× the previous 18px) → 24px on desktop */
+  --text: clamp(1.35rem, 0.95rem + 0.75vw, 1.5rem);
   /* Leading: the single source for line height and all vertical spacing.
      --line is one line of body text, as a length. It is built from --text
      (not em) so it means the same distance everywhere, even inside smaller
@@ -46,6 +46,10 @@ html {
   text-size-adjust: 100%;
 }
 
+/* The page canvas is the footer color, so any space past the end of the
+   page (mobile overscroll, toolbar area) continues the footer. */
+html { background: var(--bg-5); }
+
 body {
   margin: 0;
   background: var(--bg-1);
@@ -57,6 +61,17 @@ body {
   word-spacing: 0.08em;
   -webkit-font-smoothing: antialiased;
   font-kerning: normal;
+}
+
+/* Pulling down past the top shows the header color instead */
+body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -100vh;
+  height: 100vh;
+  background: var(--bg-1);
 }
 
 p,
