@@ -207,7 +207,7 @@ a:focus-visible {
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
-.name em { font-style: italic; }
+.name em {}
 
 /* Photo ------------------------------------------------------------- */
 /* Two lines above and below every photo. At the start or end of a
