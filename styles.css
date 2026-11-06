@@ -24,6 +24,8 @@
   --bg-5: #cabebc; /* dusty rose   – footer */
   /* Darkened from the original green so text stays readable (WCAG AA) on every band */
   --green: #0b5a22;
+  /* Hover color for in-line links and accordion titles */
+  --hover: #663F00;
   --measure: 760px;
   --font: "Routed Gothic", sans-serif;
   /* 19.8px on phones (1.1× the previous 18px) → 24px on desktop */
@@ -91,7 +93,7 @@ main a {
   transition: color 0.4s ease, text-decoration-color 0.4s ease;
 }
 main a:hover {
-  color: #663F00;
+  color: var(--hover);
   text-decoration-color: transparent;
 }
 a:focus-visible {
@@ -125,6 +127,11 @@ a:focus-visible {
   cursor: pointer;
   padding: calc(var(--line) * 2) var(--pad-x);
   -webkit-tap-highlight-color: transparent;
+}
+/* Title fades to the link hover color while the bar is hovered */
+.accordion > summary h2 { transition: color 0.4s ease; }
+@media (hover: hover) {
+  .accordion > summary:hover h2 { color: var(--hover); }
 }
 .accordion > summary::-webkit-details-marker { display: none; }
 .accordion > summary:focus { outline: none; }
