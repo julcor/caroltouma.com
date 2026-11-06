@@ -103,8 +103,7 @@ a:focus-visible {
 /* Bands ------------------------------------------------------------- */
 /* Full-width color bands; content stays in a centred column via padding. */
 .band {
-  --pad-x: max(var(--gutter), calc((100% - var(--measure)) / 2));
-  padding: calc(var(--line) * 2) var(--pad-x);
+  padding: calc(var(--line) * 2) max(var(--gutter), calc((100% - var(--measure)) / 2));
 }
 .band-1 { background: var(--bg-1); }
 .band-2 { background: var(--bg-2); }
@@ -114,30 +113,6 @@ a:focus-visible {
 
 /* Header and welcome share one color, so they read as a single section */
 .masthead { padding-bottom: 0; }
-
-/* Accordions --------------------------------------------------------- */
-/* About, Services and Pricing open and close. The whole band is the
-   button, so the padding moves from the section onto the bar and panel. */
-.band-accordion { padding: 0; }
-.accordion > summary {
-  display: block;
-  list-style: none;
-  cursor: pointer;
-  padding: calc(var(--line) * 2) var(--pad-x);
-  -webkit-tap-highlight-color: transparent;
-}
-.accordion > summary::-webkit-details-marker { display: none; }
-.accordion > summary:focus { outline: none; }
-.accordion > summary:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: -6px;
-}
-.accordion .panel {
-  /* Pull content up so it sits one line below the heading, as before */
-  margin-top: calc(var(--line) * -1);
-  padding: 0 var(--pad-x) calc(var(--line) * 2);
-}
-.accordion .panel > :first-child { margin-top: 0; }
 
 /* Header ------------------------------------------------------------ */
 .name {
