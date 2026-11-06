@@ -61,6 +61,7 @@ body {
   word-spacing: 0.08em;
   -webkit-font-smoothing: antialiased;
   font-kerning: normal;
+  text-wrap: pretty;
 }
 
 /* Pulling down past the top shows the header color instead */
